@@ -1,0 +1,37 @@
+<h2>Select region and country to display table data</h2>
+<div class="row mt-4">
+  <div class="col-md-4">
+    <app-dropdown [labelName]="'Region'" [data]='regionData' (selectedItem)="populateCountryData($event)">
+    </app-dropdown>
+  </div>
+  <div class="col-md-4 ml-5">
+    <app-dropdown [labelName]="'Country'" [data]='countriesData' (selectedItem)="setSelectedCountry($event)">
+    </app-dropdown>
+  </div>
+
+  <div class="ml-4 btnClass">
+    <button (click)="populateTableData()" [disabled]="!selectedCountry" class="btn btn-primary">Load Country</button>
+  </div>
+</div>
+
+<h3 *ngIf=" tableData.length>0" class="mt-4">Country Data</h3>
+<table *ngIf="tableData.length>0" class="table table-bordered mt-4">
+  <thead class="table table-head">
+    <th>Name</th>
+    <th>Capital</th>
+    <th>Population</th>
+    <th>Currencies</th>
+    <th>Flag</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let country of tableData">
+      <td>{{country.name}}</td>
+      <td>{{country.capital}}</td>
+      <td>{{country.population}}</td>
+      <td>{{country.currencies[0].name}}</td>
+      <td>
+        <img [src]="country.flag" height="30"> <br />
+      </td>
+    </tr>
+  </tbody>
+</table>

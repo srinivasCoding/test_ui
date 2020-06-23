@@ -1,0 +1,11 @@
+<div class="row">
+    <label for="dropdown">
+        <strong>{{labelName}}</strong>
+    </label>
+    <select class="custom-select" [disabled]="data && data.length===0" id="dropdown"
+        (change)="onchange($event.target.value)" placeholder="select the value">
+        <!-- <option>Select the value</option> -->
+        <option value="" disabled selected>Select your option</option>
+        <option *ngFor="let item of data">{{item}}</option>
+    </select>
+</div>
